@@ -20,6 +20,7 @@ public class HelloApplication {
         GenericApplicationContext applicationContext = new GenericApplicationContext();
         // 스프링 컨테이너에 빈 등록
         applicationContext.registerBean(HelloController.class);
+        applicationContext.registerBean(SimpleHelloService.class);
         // 초기화하기
         applicationContext.refresh();
 
@@ -33,7 +34,7 @@ public class HelloApplication {
                 protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
                     // 인증, 보안, 다국어, 공통 기능 등 있다고 가정
                     if (req.getRequestURI().equals("/hello") && req.getMethod().equals(HttpMethod.GET.name())) {
-                        String msg = req.getParameter("message");
+                        String msg = req.getParameter("name");
 
                         // 빈의 이름을 가져오는 방식 대신 클래스 빈의 타입이 1개만 있기에 클래스로 가져옴
                         HelloController helloController = applicationContext.getBean(HelloController.class);

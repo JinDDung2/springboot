@@ -1,9 +1,18 @@
 package springboot.hello;
 
+import java.util.Objects;
+
 public class HelloController {
 
-    public String hello(String message) {
-        return "Hello " + message;
+    private final HelloService helloService;
+
+    public HelloController(HelloService helloService) {
+        this.helloService = helloService;
+    }
+
+    public String hello(String name) {
+
+        return helloService.sayService(Objects.requireNonNull(name));
     }
 
 }
