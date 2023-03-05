@@ -2,15 +2,18 @@ package springboot.hello;
 
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServer;
-import org.springframework.web.context.support.GenericWebApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+@Configuration
+@ComponentScan
 public class HelloApplication {
-
     public static void main(String[] args) {
 
         // DispatcherServlet 을 사용하기위해 GenericApplicationContext -> GenericWebApplicationContext
-        GenericWebApplicationContext applicationContext = new GenericWebApplicationContext() {
+        AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext() {
             @Override
             protected void onRefresh() {
                 super.onRefresh();
@@ -29,8 +32,7 @@ public class HelloApplication {
             }
         };
         // 스프링 컨테이너에 빈 등록
-        applicationContext.registerBean(HelloController.class);
-        applicationContext.registerBean(SimpleHelloService.class);
+        applicationContext.register(HelloApplication.class);
         // 스프링 컨테이너 초기화 작업 -> refresh()로 함
         applicationContext.refresh();
 
