@@ -33,7 +33,7 @@ public class HelloApiTest {
         // http localhost:8080/hello?name=start
         TestRestTemplate restTemplate = new TestRestTemplate();
         ResponseEntity<String> res =
-                restTemplate.getForEntity("http://localhost:8080/hello?nam=", String.class);
+                restTemplate.getForEntity("http://localhost:8080/hello?na=", String.class);
 
         // status 500 -> 원래는 4xx에러 발생해야함
         assertThat(res.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
