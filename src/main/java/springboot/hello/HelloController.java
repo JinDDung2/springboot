@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping
-@RestController
+@RestController // @Controller + @ResponseBody --> 합성 애노테이션
 public class HelloController {
 
     private final HelloService helloService;
