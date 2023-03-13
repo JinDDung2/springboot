@@ -1,4 +1,4 @@
-package springboot.hello;
+package config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,5 +12,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE) // TYPE -> class, interface, enum
 @Configuration
 @ComponentScan
-public @interface MySpringBootAnnotation {
+@EnableMyAutoConfig
+public @interface MySpringBootApplication {
 }
