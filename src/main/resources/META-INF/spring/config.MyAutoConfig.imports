@@ -1,2 +1,3 @@
 config.autoconfig.TomcatWebServerConfig
 config.autoconfig.DispatcherServletConfig
+config.autoconfig.DataSourceConfig
