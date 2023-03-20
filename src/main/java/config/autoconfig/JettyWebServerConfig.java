@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.core.type.AnnotatedTypeMetadata;
+import org.springframework.util.ClassUtils;
 
 @MyAutoConfig
 @Conditional(JettyWebServerConfig.JettyCondition.class)
@@ -21,7 +22,8 @@ public class JettyWebServerConfig {
         @Override
         // AnnotatedTypeMetadata -> Conditional (메타)애노테이션을 사용하고 있는 그 위치에 붙은 다른 애노테이션 정보를 이용할 수 있음
         public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-            return false;
+            return ClassUtils.isPresent("org.eclipse.jetty.server.Server",
+                    context.getClassLoader());
         }
     }
 }
